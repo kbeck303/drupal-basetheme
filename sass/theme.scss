@@ -3,30 +3,73 @@
 
 @import "config";
 
-/**
- * Theme
- *************************/
+/* Featured Post Block */
+.article-featured { // sidebar list of articles with date
+	ul {
+		li {
+			margin-bottom: 0.6em;
+		}
+	}
+	time {
+		display: block;
+		color: $date-copy;
+		font-size: 0.8em;
+		text-transform: uppercase;
+	}
+}
 
-/**
- * Globals
- */
+/* List of Posts */
+.list-page {
+	article {
+		border-bottom: 1px solid $border-color;
+		padding-bottom: 2.5em;
+		margin-bottom: 2.5em;
+		@include breakpoint(768px) {
+			padding-bottom: 5em;
+			margin-bottom: 4em;
+		}
+		&.last {
+			padding-bottom: 0;
+			margin-bottom: 4em;
+			border-bottom: 0;
+		}
+	}
+}
 
-/**
- * Typography
- */
+/* Views Pager */
+.item-list ul.pager {
+	text-align: right;
+	border-bottom: 1px solid $border-color;
+	padding: 0 0 3em;
+	li {
+		padding: 0 0.2em 0 0;
+		margin: 0;
+	}
+	.pager-current.first,
+	.pager-current.last {
+		display: inline;
+		visibility: visible;
+	}
+	a,
+	a:link,
+	.pager-current {
+		color: $body-copy-links;
+		font-size: 0.8em;
+		font-weight: 100;
+		background-color: $pager-background;
+		padding: 0.5em 0.9em;
+		&:hover {
+			background-color: $pager-background-hover;
+			text-decoration: none;
+		}
+	}
+	.pager-current {
+		margin-right: 0.2em;
+		background-color: $pager-background-hover;
+	}
+}
 
-/**
- * Layout
- */
-
-/**
- * Blocks
- */
-
-/**
- * Views
- */
-
-/**
- * Content
- */
+.copyright {
+	font-size: 0.8em;
+	text-align: right;
+}

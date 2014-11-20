@@ -1,0 +1,97 @@
+// @file Navigation
+// This file contains basic styles for navigation elements.
+
+/* Header Navigation */
+// using these styles when menu appears in the header region
+
+/* Navigation Region */
+#site-navigation {
+	position: absolute;
+	right: 1rem;
+	bottom: 1.1rem;
+	@include breakpoint(768px) {
+		@include span(6 of 12 last);
+		float: right;
+		position: relative;
+	}
+}
+
+/* Desktop Main Menu */
+.main-menu {
+	display: none; // We are hiding the desktop menus at smaller screens
+	@include breakpoint(768px) {
+		display: block;
+	}
+	.menu {
+		@include zero-list();
+		li {
+			display: block;
+			float: left;
+			a {
+				@include text-decoration($color6, $color2);
+			}
+		}
+		li.active-trail {
+			a {
+				color: $color2;
+			}
+		}
+	}
+}
+
+/* Mobile Menu */
+.mobile-menu-wrapper {
+	display: block;
+	width: 250px;
+	position: absolute;
+	top: 0;
+	left: -250px;
+	z-index: 998; // Must sit on top of the slideshow but under the admin menu on smaller screens
+	.burger { // Mobile Menu Button
+		background: $color6 url(../images/burger.png) no-repeat center center;
+		content: "";
+		cursor: pointer;
+		display: block;
+		height: 50px;
+		width: 50px;
+		position: relative;
+		top: 0;
+		right: -250px;
+		z-index: 998; // Must sit on top of the slideshow but under the admin menu on smaller screens
+		.admin-menu & {
+			top: 110px; // height of admin menu + front end dev tool
+			@include breakpoint(430px) {
+				top: 85px; // height of admin menu + front end dev tool
+			}
+			@include breakpoint(806px) {
+				top: 60px; // height of admin menu + front end dev tool
+			}
+		}
+	}
+	.mobile-menu-items {
+		background-color: $color6;
+		position: relative;
+		min-height: 10em;
+		padding: 0.6em;
+		color: $color1;
+		top: 60px; // height of admin menu + front end dev tool - hamburger height
+		@include breakpoint(430px) {
+			top: 35px; // height of admin menu + front end dev tool - hamburger height
+		}
+		@include breakpoint(806px) {
+			top: 10px; // height of admin menu + front end dev tool - hamburger height
+		}
+	}
+	@include breakpoint(768px) { // We are hiding the mpbile menus at larger screens
+		display: none;
+	}
+}
+
+/* Sidebar Menu */
+.menu-sidebar-block {
+	ul {
+		@include zero-list;
+		li {
+		}
+	}
+}

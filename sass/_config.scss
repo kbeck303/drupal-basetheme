@@ -1,15 +1,104 @@
 // @file Config
 // This file contains theme variables and compile order specifications.
+// @file Config
+// This file contains theme variables and compile order specifications.
 
 // VARIABLES
 
 // Font Stacks
-$base-font-stack: sans;
-$alt-font-stack: sans-serif;
+$fallback-base-font-stack: sans-serif; // Set fallback font stack when webfonts aren't available
+$base-font-stack: Arial, Helvetica, $fallback-base-font-stack;
+$fallback-alt-font-stack: serif; // Set fallback alt font stack when webfonts aren't available
+$alt-font-stack: Georgia, $fallback-alt-font-stack;
 
 // Colors
-$primary-color: #fff;
-$secondary-color: #000;
+$color1: #ffffff; // White
+$color2: #000000; // Black
+$color3: #cccccc; // Light Gray
+$color4: #666666; // Medium Gray
+$color5: #333333; // Dark Gray
+$color6: #D62901; // Red
+$color6a: darken($color6, 10); // Dark Red
+$color7: #bbbaba; // Light Medium Gray
+
+// Typography
+$base-font-size: 16px;
+
+$heading-size-1: $base-font-size * 2.4;
+$heading-size-2: $base-font-size * 2.2;
+$heading-size-3: $base-font-size * 2.0;
+$heading-size-4: $base-font-size * 1.8;
+$heading-size-5: $base-font-size * 1.6;
+$heading-size-6: $base-font-size * 1.4;
+
+$form-field-size: $base-font-size * 1;
+
+$body-copy: $color5;
+$body-copy-reverse: $color1;
+
+$heading-color-1: $color2;
+$heading-color-2: $color6;
+$heading-color-3: $color2;
+$heading-color-4: $color2;
+$heading-color-5: $color2;
+$heading-color-6: $color2;
+
+$blockquote-copy: $color6;
+$date-copy: $color4;
+
+$main-menu-links: $color6;
+$main-menu-links-hover: $main-menu-links;
+
+$body-copy-links: $color6;
+$body-copy-links-hover: $body-copy-links;
+
+$sidebar-menu-links: $color6;
+$sidebar-menu-links-hover: $sidebar-menu-links;
+
+$footer-links: $color1;
+$footer-links-hover: $footer-links;
+
+// Style
+$border-color: $color3;
+$border-alternative-color: $color4;
+$border-hack-color: $color1;
+$border-header-color: $color6;
+
+$site-background: $color1;
+$page-background: $color1;
+$pager-background: $color3;
+$pager-background-hover: $color7;
+
+$button-background: $color6;
+$button-background-hover: $color6a;
+$button-border: $color6;
+$button-border-hover: $button-border;
+$button-copy: $color1;
+$button-copy-hover: $button-copy;
+
+
+// Susy
+@import "susy";
+$susy: (
+	container: 1140px,
+  columns: 12,
+  global-box-sizing: border-box,
+  debug: (
+    image: show,
+    color: rgba(0,0,0,.4),
+    output: background
+  ),
+);
+
+// Media Query Breakpoints
+// Usage:: @include breakpoint($mq-1);
+// $mq-1: 0px 320px;
+// $mq-2: 321px 480px;
+// $mq-3: 481px 640px;
+// $mq-4: 641px 767px;
+// $mq-5: 768px 1023px;
+// $mq-6: 1024px 9999px;
+
 
 // Imports
 //
@@ -31,13 +120,13 @@ $secondary-color: #000;
 
 // CSS Preprocess Logic
 	@import "preprocess";
-	@import "normalize";
+	@import "reset";
 
-// CSS Grid Framework Logic
-	@import "foundation/settings";
-	@import "foundation/components/block-grid";
-	@import "foundation/components/grid";
+// SASS Preprocess Logic
+	@import "breakpoint";
 
 // Theme Styles
 	@import "base";
+	@import "forms";
+	@import "navigation";
 	@import "print";

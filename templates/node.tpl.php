@@ -2,7 +2,7 @@
 
 /**
  * @file
- * Oomphbase theme implementation to display a node.
+ * Origins theme implementation to display a node.
  *
  * Available variables:
  * - $title: the (sanitized) title of the node.

@@ -1,7 +1,7 @@
 <?php
 /**
  * @file
- * Oomphbase theme implementation to disply the basic html structure of a
+ * Origins theme implementation to disply the basic html structure of a
  * single Drupal page.
  *
  * Variables:
@@ -70,9 +70,15 @@
 </head>
 <body class="<?php print $classes; ?>" <?php print $attributes;?>>
     <?php // https://www.drupal.org/node/467976 - skip link documentation ?>
-    <p id="skip-link">
+    <span id="skip-link">
     <a href="#main-content" class="element-invisible element-focusable"><?php print t('Skip to main content'); ?></a>
-    </p>
+    </span>
+    <div class="mobile-menu-wrapper">
+      <span class="burger"></span>
+      <div class="mobile-menu-items">
+        <?php print 'Add menu_list variable in the html.tpl.php file'; ?>
+      </div>
+    </div>
   <?php print $page_top; ?>
   <?php print $page; ?>
   <?php print $page_bottom; ?>

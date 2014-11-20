@@ -1,0 +1,47 @@
+// @file Forms
+// This file contains styles for forms.
+
+
+/* Default Forms */
+input,
+.form-textarea-wrapper textarea { // field styles
+	width: 100%;
+	border: 1px solid $border-color;
+	padding: 0.8em 1em 0.5em 1em;
+	font-size: $form-field-size;
+	@include breakpoint(768px) {
+		width: 90%;
+	}
+}
+
+input.form-submit { // button styles
+	width: 100%;
+	background-color: $button-background;
+	border: 1px solid $button-border;
+	color: $button-copy;
+	@include breakpoint(400px) {
+		width: 30%;
+	}
+	@include breakpoint(500px) {
+		width: 20%;
+	}
+	&:hover {
+		background-color: $button-background-hover;
+	}
+}
+
+// Search Forms
+.block-search {
+	input {
+		width: 68%;
+		@include breakpoint($mq-6) {
+			width: 62%;
+		}
+	}
+	input.form-submit {
+		width: 30%;
+		@include breakpoint($mq-6) {
+			width: 35%;
+		}
+	}
+}

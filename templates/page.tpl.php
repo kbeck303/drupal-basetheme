@@ -2,7 +2,7 @@
 
 /**
  * @file
- * Oomphbase theme implementation to display a single Drupal page.
+ * Origins theme implementation to display a single Drupal page.
  *
  * The doctype, html, head and body tags are not in this template. Instead they
  * can be found in the html.tpl.php template in this directory.
@@ -29,7 +29,6 @@
  *   in theme settings.
  *
  * Navigation:
- *  // TODO: we removed these featured, so maybe update docs?
  *
  * - $main_menu (array): An array containing the Main menu links for the
  *   site, if they have been configured.
@@ -58,8 +57,10 @@
  *   comment/reply/12345).
  *
  * Regions:
+ * - $page['utility']: Items for the utility region.
  * - $page['header']: Items for the header region.
  * - $page['nav']: Should be reserved for navigation items.
+ * - $page['feature']: Items for the feature region.
  * - $page['help']: Dynamic help text, mostly for admin pages.
  * - $page['content_top']: The main content on the top of the current page.
  * - $page['content']: The main content of the current page.
@@ -79,6 +80,14 @@
 
 <div id="page-wrapper">
   <div id="page">
+
+    <?php if ($page['utility']): ?>
+      <div id="utility">
+        <div class="utility-inner">
+          <?php print render($page['utility']); ?>
+        </div>
+      </div>
+    <?php endif; ?>
 
     <div id="header-wrapper">
       <header id="header" class="header">
@@ -105,24 +114,41 @@
 
         <?php print render($page['header']); ?>
 
+        <?php if ($page['nav']): ?>
+          <nav id="site-navigation">
+            <?php print render($page['nav']); ?>
+          </nav>
+        <?php endif; ?>
+
       </header>
     </div> <!-- header, #header-wrapper -->
 
-    <?php if ($page['nav']): ?>
-      <nav id="site-navigation">
-        <?php print render($page['nav']); ?>
-      </nav>
-    <?php endif; ?>
-
-    <?php if ($breadcrumb): ?>
-      <div id="breadcrumb-wrapper">
-        <nav id="breadcrumb">
-          <?php print $breadcrumb; ?>
-        </nav>
+    <?php if ($page['featured']): ?>
+      <div id="featured">
+        <div class="featured-inner">
+          <?php print render($page['featured']); ?>
+        </div>
       </div>
     <?php endif; ?>
 
-    <?php print $messages; ?>
+   <!-- hiding breadcrumbs on front-end -->
+    <?php //if ($breadcrumb): ?>
+     <!--  <div id="breadcrumb-wrapper">
+        <nav id="breadcrumb">
+          <div class="breadcrumb-inner"> -->
+            <?php //print $breadcrumb; ?>
+          <!-- </nav>
+        </div>
+      </div> -->
+    <?php //endif; ?>
+
+    <div id="message-wrapper">
+      <div class="message-wrapper-inner">
+        <div class="message-container">
+          <?php print $messages; ?>
+        </div>
+      </div>
+    </div>
 
     <div id="main-wrapper">
       <main id="main" class="main">
@@ -138,31 +164,31 @@
           </nav>
         <?php endif; ?>
 
-        <?php print render($page['help']); ?>
-
-        <?php if ($action_links): ?>
-          <ul class="action-links">
-            <?php print render($action_links); ?>
-          </ul>
-        <?php endif; ?>
-
-        <?php if ($page['content_top']): ?>
-          <section id="content-top" class="section content-top">
-            <?php print render($page['content_top']); ?>
-          </section>
-        <?php endif; ?>
-
         <section id="content" class="section content">
-          <?php print render($page['content']); ?>
+          <?php print render($page['help']); ?>
+
+          <?php if ($action_links): ?>
+            <ul class="action-links">
+              <?php print render($action_links); ?>
+            </ul>
+          <?php endif; ?>
+
+          <?php if ($page['content_top']): ?>
+            <section id="content-top" class="section content-top">
+              <?php print render($page['content_top']); ?>
+            </section>
+          <?php endif; ?>
+
+            <?php print render($page['content']); ?>
+
+          <?php if ($page['content_bottom']): ?>
+            <section id="content-bottom" class="section content-bottom">
+              <?php print render($page['content_bottom']); ?>
+            </section>
+          <?php endif; ?>
+
+          <?php print $feed_icons; ?>
         </section>
-
-        <?php if ($page['content_bottom']): ?>
-          <section id="content-bottom" class="section content-bottom">
-            <?php print render($page['content_bottom']); ?>
-          </section>
-        <?php endif; ?>
-
-        <?php print $feed_icons; ?>
 
         <?php if ($page['sidebar_first']): ?>
           <section id="sidebar-first" class="section sidebar">
